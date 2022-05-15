@@ -15,7 +15,7 @@ function generatePassword(passLength,pass) {
 function writePassword() {
   var passLength = prompt("Please enter your Password length:", ' ');
   if ( passLength >=8  && passLength <= 128 ) {
-        alert("Password is  " + passLength + " characters long");
+        alert("Password will be  " + passLength + " characters long");
     
     var passNumber =  confirm("Do you want numbers?"); 
     var pass = '';
@@ -32,11 +32,21 @@ function writePassword() {
     lowerCase ? pass += lowerLetters : "";
     Symbol ? pass += spCharcter : "" ;
 
+    //password validation to check if at least one character type is included
+   // if (pass !== numbers || pass !== upperLetters || pass !== lowerLetters || pass !== spCharcter)
+   if (passNumber === false && upperCase === false && lowerCase === false && Symbol === false)
+    {
+      alert("Please select atleast one Charater Type");
+    }
+    else{
+    }
+    
   var password = generatePassword(passLength,pass);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-   }
+    }
+   
       else 
       {
         alert("Password length should be between 8-128 charaters.");
@@ -47,5 +57,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
 
 
